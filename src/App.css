@@ -8,4 +8,38 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 50%;
+  background-color: red;
+}
+.column-two {
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 50%;
+  background-color: yellow;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  color: #3498db;
+  background-color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    flex-direction: column;
+  }
+  .column {
+    width: 100%;
+  }
+  .column-two {
+    width: 100%;
+  }
 }

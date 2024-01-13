@@ -5,7 +5,12 @@ const SearchBar = () => {
     <>
       <Autocomplete
         apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
-        style={{ width: "90%" }}
+        style={{
+          width: "100%",
+          border: "none",
+          padding: "10px 20px",
+          fontSize: "16px",
+        }}
         options={{
           types: ["address"],
           componentRestrictions: { country: "us" },
