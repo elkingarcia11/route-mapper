@@ -1,6 +1,9 @@
 import Autocomplete from "react-google-autocomplete";
 
-const SearchBar = () => {
+const SearchBar = ({ updateAddress }) => {
+  const handleClick = (address) => {
+    updateAddress(address);
+  };
   return (
     <>
       <Autocomplete
@@ -15,7 +18,7 @@ const SearchBar = () => {
           types: ["address"],
           componentRestrictions: { country: "us" },
         }}
-        onPlaceSelected={(place) => console.log(place)}
+        onPlaceSelected={(place) => handleClick(place)}
         className="search-bar-input"
       />
     </>
