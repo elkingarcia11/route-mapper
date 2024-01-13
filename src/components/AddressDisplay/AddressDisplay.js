@@ -1,5 +1,19 @@
 import "./AddressDisplay.css";
-const AddressDisplay = ({ address }) => {
+const AddressDisplay = ({ address, addStop }) => {
+  const add = () => {
+    const stop =
+      address.address_components[0].long_name +
+      " " +
+      address.address_components[1].long_name +
+      " " +
+      address.address_components[3].short_name +
+      ", " +
+      address.address_components[5].long_name +
+      " " +
+      address.address_components[7].long_name;
+    addStop(stop);
+  };
+
   return (
     <>
       <div className="address-display-container">
@@ -13,7 +27,9 @@ const AddressDisplay = ({ address }) => {
           {address.address_components[5].long_name}{" "}
           {address.address_components[7].long_name}
         </div>
-        <button className="address-display-button">ADD STOP</button>
+        <button className="address-display-button" onClick={add}>
+          ADD STOP
+        </button>
       </div>
     </>
   );
