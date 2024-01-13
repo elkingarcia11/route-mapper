@@ -1,37 +1,25 @@
 import "./AddressDisplay.css";
 const AddressDisplay = ({ address, addStop }) => {
   const add = () => {
-    const stop =
-      address.address_components[0].long_name +
-      " " +
-      address.address_components[1].long_name +
-      " " +
-      address.address_components[3].short_name +
-      ", " +
-      address.address_components[5].long_name +
-      " " +
-      address.address_components[7].long_name;
-    addStop(stop);
+    addStop(address.formatted_address);
+  };
+
+  const cancel = () => {
+    addStop(null);
   };
 
   return (
-    <>
-      <div className="address-display-container">
-        <div className="address-display-p">
-          {address.address_components[0].long_name}{" "}
-          {address.address_components[1].long_name}
-        </div>
-        <div className="address-display-sub-p">
-          {address.address_components[3].short_name}
-          {", "}
-          {address.address_components[5].long_name}{" "}
-          {address.address_components[7].long_name}
-        </div>
+    <div className="address-display-container">
+      <div className="address-display-p">{address.formatted_address}</div>
+      <div className="address-row">
+        <button className="address-display-button-cancel" onClick={cancel}>
+          CANCEL
+        </button>
         <button className="address-display-button" onClick={add}>
           ADD STOP
         </button>
       </div>
-    </>
+    </div>
   );
 };
 export default AddressDisplay;

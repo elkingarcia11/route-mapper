@@ -1,0 +1,24 @@
+.numbered-list {
+  width: 100%;
+  text-align: left;
+}
+
+.numbered-list h2 {
+  padding-left: 16px;
+}
+.numbered-list button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-radius: 0;
+}
+
+.stop-button {
+  width: 100%;
+  border-bottom: solid 1px lightgray;
+}
+
+.stop-button button {
+  color: black;
+  width: 100%;
+}

@@ -9,8 +9,7 @@ const SearchBar = ({ updateAddress }) => {
       <Autocomplete
         apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
         style={{
-          width: "100%",
-          border: "none",
+          border: "solid 1px lightgray",
           padding: "10px 20px",
           fontSize: "16px",
         }}

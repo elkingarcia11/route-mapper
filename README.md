@@ -13,6 +13,7 @@ Artifact Registry for Docker image
 ## Dependencies
 - `npm i @react-google-maps/api`
 - `npm i react-google-autocomplete`
+- `npm i react-tiny-popover`
 
 ## Available Scripts
 

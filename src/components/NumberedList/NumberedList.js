@@ -1,10 +1,16 @@
+import "./NumberedList.css";
 const NumberedList = ({ listOfStops }) => {
   return (
-    <ol>
+    <div className="numbered-list">
+      <h2>Stops</h2>
       {listOfStops.map((stop, index) => (
-        <li key={index}>{stop}</li>
+        <div className="stop-button">
+          <button>
+            {index + 1}. {stop}
+          </button>
+        </div>
       ))}
-    </ol>
+    </div>
   );
 };
 
