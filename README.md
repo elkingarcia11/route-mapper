@@ -11,7 +11,8 @@ Artifact Registry for Docker image
 3. Cloud Run triggers a new deployment of web app using new Docker image in Artifact Registry
 
 ## Dependencies
-- `npm install -g serve`
+- `npm i @react-google-maps/api`
+- `npm i react-google-autocomplete`
 
 ## Available Scripts
 
