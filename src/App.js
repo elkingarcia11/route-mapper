@@ -1,9 +1,11 @@
-import { useState } from "react";
-import "./App.css";
+import { useState, useRef } from "react";
+
 import SearchBar from "./components/SearchBar/SearchBar";
 import AddressDisplay from "./components/AddressDisplay/AddressDisplay";
 import NumberedList from "./components/NumberedList/NumberedList";
-import { useRef } from "react";
+
+import "./App.css";
+
 function App() {
   const searchBar = useRef(null);
 
@@ -22,9 +24,9 @@ function App() {
     } else if (!stops.includes(stop)) {
       setStops((prevStops) => [...prevStops, stop]);
       setAddress(null);
-      searchBar.current.value = "";
-      searchBar.current.focus();
     }
+    searchBar.current.value = "";
+    searchBar.current.focus();
   };
 
   return (
@@ -37,9 +39,7 @@ function App() {
             className="search-bar"
           />
         </div>
-        <div className="list">
-          {stops.length > 0 ? <NumberedList listOfStops={stops} /> : <></>}
-        </div>
+        {stops.length > 0 ? <NumberedList listOfStops={stops} /> : <></>}
         <div className="address-display">
           {address ? (
             <AddressDisplay address={address} addStop={addStop} />
