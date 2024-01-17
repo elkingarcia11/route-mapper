@@ -1,6 +1,8 @@
 .numbered-list {
   width: 100%;
   text-align: left;
+  overflow: auto;
+  max-height: 80%;
 }
 
 .numbered-list h2 {

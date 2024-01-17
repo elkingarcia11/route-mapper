@@ -1,12 +1,14 @@
+import { forwardRef } from "react";
 import Autocomplete from "react-google-autocomplete";
 
-const SearchBar = ({ updateAddress }) => {
+const SearchBar = forwardRef(function SearchBar({ updateAddress }, ref) {
   const handleClick = (address) => {
     updateAddress(address);
   };
   return (
     <>
       <Autocomplete
+        ref={ref}
         apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
         style={{
           border: "solid 1px lightgray",
@@ -22,7 +24,7 @@ const SearchBar = ({ updateAddress }) => {
       />
     </>
   );
-};
+});
 
 export default SearchBar;
 
