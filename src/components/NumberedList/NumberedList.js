@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-
+import { FaTrash } from "react-icons/fa";
 import "./NumberedList.css";
 
-const NumberedList = ({ listOfStops }) => {
+const NumberedList = ({ listOfStops, eraseRoute }) => {
   useEffect(() => {
     const container = document.getElementById("autoGrowContainer");
     if (container) {
@@ -13,7 +13,12 @@ const NumberedList = ({ listOfStops }) => {
 
   return (
     <div id="autoGrowContainer" className="numbered-list">
-      <h2>Stops</h2>
+      <div className="nl-row">
+        <h2>Stops</h2>
+        <button className="nl-delete" onClick={eraseRoute}>
+          <FaTrash /> <span>Delete Route</span>
+        </button>
+      </div>
       {listOfStops.map((stop, index) => (
         <div className="stop-button">
           <button>

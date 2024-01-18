@@ -29,6 +29,10 @@ function App() {
     searchBar.current.focus();
   };
 
+  const eraseRoute = () => {
+    setStops([]);
+  };
+
   return (
     <div className="App">
       <div className="app-container">
@@ -39,7 +43,11 @@ function App() {
             className="search-bar"
           />
         </div>
-        {stops.length > 0 ? <NumberedList listOfStops={stops} /> : <></>}
+        {stops.length > 0 ? (
+          <NumberedList listOfStops={stops} eraseRoute={eraseRoute} />
+        ) : (
+          <></>
+        )}
         <div className="address-display">
           {address ? (
             <AddressDisplay address={address} addStop={addStop} />
