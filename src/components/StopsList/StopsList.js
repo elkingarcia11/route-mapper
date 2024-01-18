@@ -7,10 +7,6 @@ const StopsList = ({ stops, setStops }, ref) => {
   const [address, setAddress] = useState(null);
   const searchInputRef = useRef();
 
-  const updateAddress = (address) => {
-    setAddress(address);
-  };
-
   const addStop = (stop) => {
     if (
       stop &&
@@ -30,7 +26,7 @@ const StopsList = ({ stops, setStops }, ref) => {
 
   return (
     <div className="sl-container">
-      <SearchBar ref={searchInputRef} updateAddress={updateAddress} />
+      <SearchBar ref={searchInputRef} setAddress={setAddress} />
 
       {stops.length > 0 && (
         <NumberedList stops={stops} eraseRoute={eraseRoute} />
@@ -43,10 +39,7 @@ const StopsList = ({ stops, setStops }, ref) => {
 
 StopsList.propTypes = {
   stops: PropTypes.array.isRequired,
-  address: PropTypes.object,
-  eraseRoute: PropTypes.func.isRequired,
-  addStop: PropTypes.func.isRequired,
-  updateAddress: PropTypes.func.isRequired,
+  setStops: PropTypes.func.isRequired,
 };
 
 export default StopsList;

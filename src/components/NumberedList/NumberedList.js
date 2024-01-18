@@ -12,6 +12,12 @@ const NumberedList = ({ stops, eraseRoute }) => {
     }
   }, [stops]);
 
+  const separatorStyle = {
+    height: "0.5px", // Adjust the thickness of the separator
+    background: "gray", // Color of the separator
+    margin: "5px 0", // Adjust the margin for spacing
+  };
+
   return (
     <div id="autoGrowContainer" className="numbered-list">
       <div className="nl-row">
@@ -29,6 +35,8 @@ const NumberedList = ({ stops, eraseRoute }) => {
           <button>
             {index + 1}. {stop.address}
           </button>
+
+          <div style={separatorStyle}></div>
         </div>
       ))}
     </div>

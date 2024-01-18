@@ -4,9 +4,9 @@ import Autocomplete from "react-google-autocomplete";
 
 import "./SearchBar.css";
 
-const SearchBar = forwardRef(function SearchBar({ updateAddress }, ref) {
+const SearchBar = forwardRef(function SearchBar({ setAddress }, ref) {
   const handleClick = (address) => {
-    updateAddress(address);
+    setAddress(address);
   };
 
   return (
@@ -17,8 +17,8 @@ const SearchBar = forwardRef(function SearchBar({ updateAddress }, ref) {
         style={{
           border: "none",
           width: "100%",
-          padding: "10px 20px",
-          fontSize: "16px",
+          padding: "16px 24px",
+          fontSize: "17px",
         }}
         options={{
           types: ["address"],
@@ -31,7 +31,7 @@ const SearchBar = forwardRef(function SearchBar({ updateAddress }, ref) {
 });
 
 SearchBar.propTypes = {
-  updateAddress: PropTypes.func.isRequired,
+  setAddress: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

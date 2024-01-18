@@ -31,7 +31,7 @@ const AddressDisplay = ({ address, addStop }) => {
           onClick={() => add()}
           type="button"
         >
-          ADD STOP
+          ADD
         </button>
       </div>
     </div>

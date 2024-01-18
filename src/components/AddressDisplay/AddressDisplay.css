@@ -1,10 +1,10 @@
 .address-display-container {
-  background-color: lightgrey;
+  background-color: #333333;
   position: absolute;
   bottom: 0;
-  color: black;
+  color: white;
   padding: 16px;
-  text-align: left;
+  text-align: center;
   border-radius: 5px;
   width: 80%;
   left: 50%;
@@ -22,16 +22,16 @@
   padding-top: 8px;
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: space-between;
+  width: 100%;
 }
 
 .address-display-button-cancel,
 .address-display-button {
-  margin-top: 8px;
-  margin-right: 4px; /* Maintain consistency */
   color: white;
-  flex-grow: 1; /* Use flex-grow for flexibility */
+  flex: 1;
+  padding: 10px;
+  margin: 5px 8px;
 }
 
 .address-display-button-cancel {
