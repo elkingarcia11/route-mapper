@@ -1,28 +1,33 @@
 import { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
+
 import "./NumberedList.css";
 
-const NumberedList = ({ listOfStops, eraseRoute }) => {
+const NumberedList = ({ stops, eraseRoute }) => {
   useEffect(() => {
     const container = document.getElementById("autoGrowContainer");
     if (container) {
       container.style.height = "auto";
       container.style.height = `${container.scrollHeight}px`;
     }
-  }, [listOfStops]);
+  }, [stops]);
 
   return (
     <div id="autoGrowContainer" className="numbered-list">
       <div className="nl-row">
         <h2>Stops</h2>
-        <button className="nl-delete" onClick={eraseRoute}>
+        <button
+          className="nl-delete"
+          onClick={eraseRoute}
+          aria-label="Delete Route"
+        >
           <FaTrash /> <span>Delete Route</span>
         </button>
       </div>
-      {listOfStops.map((stop, index) => (
-        <div className="stop-button">
+      {stops.map((stop, index) => (
+        <div className="stop-item" key={stop.id || index}>
           <button>
-            {index + 1}. {stop}
+            {index + 1}. {stop.address}
           </button>
         </div>
       ))}

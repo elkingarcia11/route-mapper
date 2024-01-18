@@ -14,6 +14,9 @@ Artifact Registry for Docker image
 - `npm i @react-google-maps/api`
 - `npm i react-google-autocomplete`
 - `npm i react-tiny-popover`
+- `npm install react-icons`
+- `npm i google-map-react`
+- `npm i @vis.gl/react-google-maps`
 
 ## Available Scripts
 

@@ -1,28 +1,31 @@
 .numbered-list {
   text-align: left;
-  transition: height 0.3s;
   overflow-y: auto;
-  max-height: 50%;
+  background-color: #f2f2f2;
+  height: 100%;
 }
 
 .numbered-list h2 {
   padding-left: 16px;
 }
-.stop-button button {
+
+.stop-item button {
   width: 100%;
   text-align: left;
   border: none;
   border-radius: 0;
+  padding: 8px; /* Adjust padding for better spacing */
 }
 
-.stop-button {
+.stop-item {
   width: 100%;
-  border-bottom: solid 1px lightgray;
+  margin-bottom: 1px; /* Use margin for separation */
 }
 
-.stop-button button {
+.stop-item button {
   color: black;
   width: 100%;
+  background-color: #f2f2f2;
 }
 
 .nl-row {
@@ -36,9 +39,10 @@
 }
 
 .nl-delete {
-  color: red;
-  border: none;
-  border-radius: 0;
+  background-color: lightcoral;
+  border-radius: 5px;
+  color: black;
+  border: 1px lightcoral solid;
   margin-right: 8px;
 }
 
@@ -50,6 +54,7 @@
   background-color: lightcoral;
   color: red;
 }
+
 .nl-delete span {
   padding-left: 8px;
 }

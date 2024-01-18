@@ -1,60 +1,27 @@
-import { useState, useRef } from "react";
+import React, { useState } from "react";
 
-import SearchBar from "./components/SearchBar/SearchBar";
-import AddressDisplay from "./components/AddressDisplay/AddressDisplay";
-import NumberedList from "./components/NumberedList/NumberedList";
+import GoogleMapComponent from "./components/GoogleMapComponent/GoogleMapComponent";
+import StopsList from "./components/StopsList/StopsList";
 
 import "./App.css";
 
 function App() {
-  const searchBar = useRef(null);
-
+  const [mapMode, setMapMode] = useState(false);
   const [stops, setStops] = useState([]);
-  // State to hold the address
-  const [address, setAddress] = useState(null);
-
-  // Function to update the address
-  const updateAddress = (address) => {
-    setAddress(address);
-  };
-
-  const addStop = (stop) => {
-    if (stop === null) {
-      setAddress(null);
-    } else if (!stops.includes(stop)) {
-      setStops((prevStops) => [...prevStops, stop]);
-      setAddress(null);
-    }
-    searchBar.current.value = "";
-    searchBar.current.focus();
-  };
-
-  const eraseRoute = () => {
-    setStops([]);
-  };
 
   return (
     <div className="App">
       <div className="app-container">
-        <div className="map-container">
-          <SearchBar
-            ref={searchBar}
-            updateAddress={updateAddress}
-            className="search-bar"
-          />
-        </div>
-        {stops.length > 0 ? (
-          <NumberedList listOfStops={stops} eraseRoute={eraseRoute} />
+        {mapMode ? (
+          <GoogleMapComponent stops={stops} />
         ) : (
-          <></>
+          <StopsList stops={stops} setStops={setStops} />
         )}
-        <div className="address-display">
-          {address ? (
-            <AddressDisplay address={address} addStop={addStop} />
-          ) : (
-            <></>
-          )}
-        </div>
+      </div>
+      <div className="app-button">
+        <button onClick={() => setMapMode(!mapMode)}>
+          {mapMode ? "List Mode" : "Map Mode"}
+        </button>
       </div>
     </div>
   );
