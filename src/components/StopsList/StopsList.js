@@ -10,6 +10,7 @@ const StopsList = ({ stops, setStops }, ref) => {
   const addStop = (stop) => {
     if (
       stop &&
+      stop.address &&
       !stops.some((existingStop) => existingStop.address === stop.address)
     ) {
       setStops((prevStops) => [...prevStops, stop]);

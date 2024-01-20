@@ -12,7 +12,7 @@ import "./GoogleMapComponent.css";
 const Display = ({ address }) => {
   return (
     <div className="gm-display-container">
-      <div className="gm-display-p">{address}</div>
+      <div>{address}</div>
     </div>
   );
 };
@@ -22,7 +22,7 @@ const GoogleMapComponent = ({ stops }) => {
   const [selectedPin, setSelectedPin] = useState(null);
 
   const show = (stop, index) => {
-    if (stop !== null && stop !== undefined) {
+    if (stop && index) {
       if (index === selectedPin) {
         setSelectedPin(null);
         setAddress("");
@@ -35,14 +35,6 @@ const GoogleMapComponent = ({ stops }) => {
     }
   };
 
-  const containerStyle = {
-    display: "flex",
-    flexDirection: "column",
-    position: "relative",
-    width: "100%", // Use 100% width for flexibility
-    height: "100%", // Adjust height based on showAddress
-  };
-
   if (!stops || !Array.isArray(stops)) {
     // Handle the case where stops is not a valid array
     return <div>No stops data available.</div>;
@@ -50,9 +42,9 @@ const GoogleMapComponent = ({ stops }) => {
     return (
       <>
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_MAP_API_KEY}>
-          <div style={containerStyle}>
+          <div className="container-style">
             <Map
-              mapId={"4504f8b37365c3d0"}
+              mapId={process.env.REACT_APP_GOOGLE_MAPS_MAP_API_KEY}
               center={{ lat: 40.854541, lng: -73.8939687 }}
               zoom={12}
             >
@@ -60,7 +52,6 @@ const GoogleMapComponent = ({ stops }) => {
                 const isSelected = index === selectedPin;
                 return (
                   <AdvancedMarker
-                    className="gm-marker"
                     key={index}
                     position={{ lat: stop.lat, lng: stop.lng }}
                     onClick={() => show(stop, index)}

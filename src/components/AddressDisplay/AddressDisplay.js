@@ -2,12 +2,17 @@ import "./AddressDisplay.css";
 
 const AddressDisplay = ({ address, addStop }) => {
   const add = () => {
-    const stop = {
-      address: address.formatted_address,
-      lat: address.geometry.location.lat(),
-      lng: address.geometry.location.lng(),
-    };
-    addStop(stop);
+    if (address && address.formatted_address && address.geometry.location) {
+      console.log(address);
+      const stop = {
+        address: address.formatted_address,
+        lat: address.geometry.location.lat(),
+        lng: address.geometry.location.lng(),
+      };
+      addStop(stop);
+    } else {
+      addStop();
+    }
   };
 
   const cancel = () => {

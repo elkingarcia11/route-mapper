@@ -1,32 +1,13 @@
 .numbered-list {
   padding-top: 16px;
   text-align: left;
-  overflow-y: auto;
   background-color: #f2f2f2;
-  height: 100%;
+  max-height: calc(100vh - 16vh);
+  overflow-y: auto;
 }
 
 .numbered-list h2 {
   padding-left: 16px;
-}
-
-.stop-item button {
-  width: 100%;
-  text-align: left;
-  border: none;
-  padding: 16px;
-  border-radius: 0;
-}
-
-.stop-item {
-  width: 100%;
-  margin-bottom: 1px; /* Use margin for separation */
-}
-
-.stop-item button {
-  color: black;
-  width: 100%;
-  background-color: #f2f2f2;
 }
 
 .nl-row {

@@ -1,23 +1,10 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
-
+import PopupMenu from "../PopupMenu/PopupMenu";
 import "./NumberedList.css";
 
 const NumberedList = ({ stops, eraseRoute }) => {
-  useEffect(() => {
-    const container = document.getElementById("autoGrowContainer");
-    if (container) {
-      container.style.height = "auto";
-      container.style.height = `${container.scrollHeight}px`;
-    }
-  }, [stops]);
-
-  const separatorStyle = {
-    height: "0.5px", // Adjust the thickness of the separator
-    background: "gray", // Color of the separator
-    margin: "5px 0", // Adjust the margin for spacing
-  };
-
+  const [otherPopupOpen, setOtherPopupOpen] = useState(false);
   return (
     <div id="autoGrowContainer" className="numbered-list">
       <div className="nl-row">
@@ -30,15 +17,17 @@ const NumberedList = ({ stops, eraseRoute }) => {
           <FaTrash /> <span>Delete Route</span>
         </button>
       </div>
-      {stops.map((stop, index) => (
-        <div className="stop-item" key={stop.id || index}>
-          <button>
-            {index + 1}. {stop.address}
-          </button>
-
-          <div style={separatorStyle}></div>
-        </div>
-      ))}
+      <div className="nl-list">
+        {stops.map((stop, index) => (
+          <PopupMenu
+            stop={stop}
+            index={index}
+            key={index}
+            otherPopupOpen={otherPopupOpen}
+            setOtherPopupOpen={setOtherPopupOpen}
+          />
+        ))}
+      </div>
     </div>
   );
 };

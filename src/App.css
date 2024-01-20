@@ -1,21 +1,12 @@
 .App {
-  text-align: center;
-  width: 100vw;
-
   display: flex;
+  text-align: center;
   flex-direction: column;
-  height: 100vh;
   overflow: hidden;
   background-color: #f2f2f2;
-}
-
-.app-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.map-container {
-  margin-top: 10vh;
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
 }
 
 .address-display {
@@ -27,21 +18,20 @@
 }
 
 button {
-  display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid #3498db;
+  border: 2px solid;
   border-radius: 5px;
-  color: #3498db;
   background-color: #fff;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.app-button button {
+.app-button-button {
+  height: 8vh;
   border: 1.5px solid green;
   border-radius: 0px;
   color: green;
@@ -50,13 +40,16 @@ button {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.app-button button:active {
+.app-button-button:active {
   background-color: lightgreen;
   color: darkgreen;
 }
 
-.list {
-  padding: 0;
-  margin: 0;
-  background-color: red;
+.app-button {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  min-height: 8vh;
+  max-height: 8vh;
+  background-color: yellow;
 }

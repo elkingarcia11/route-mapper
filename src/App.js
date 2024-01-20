@@ -11,15 +11,16 @@ function App() {
 
   return (
     <div className="App">
-      <div className="app-container">
-        {mapMode ? (
-          <GoogleMapComponent stops={stops} />
-        ) : (
-          <StopsList stops={stops} setStops={setStops} />
-        )}
-      </div>
+      {mapMode ? (
+        <GoogleMapComponent stops={stops} />
+      ) : (
+        <StopsList stops={stops} setStops={setStops} />
+      )}
       <div className="app-button">
-        <button onClick={() => setMapMode(!mapMode)}>
+        <button
+          className="app-button-button"
+          onClick={() => setMapMode(!mapMode)}
+        >
           {mapMode ? "List Mode" : "Map Mode"}
         </button>
       </div>

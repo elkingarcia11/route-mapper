@@ -6,7 +6,9 @@ import "./SearchBar.css";
 
 const SearchBar = forwardRef(function SearchBar({ setAddress }, ref) {
   const handleClick = (address) => {
-    setAddress(address);
+    if (address) {
+      setAddress(address);
+    }
   };
 
   return (
