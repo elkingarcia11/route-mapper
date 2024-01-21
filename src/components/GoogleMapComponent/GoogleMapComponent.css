@@ -26,6 +26,5 @@
   flex-direction: column;
   position: relative;
   width: 100vw;
-  height: calc(100vh - 8vh);
-  max-height: calc(100vh - 8vh);
+  height: 92vh;
 }

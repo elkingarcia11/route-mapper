@@ -12,7 +12,7 @@ import "./GoogleMapComponent.css";
 const Display = ({ address }) => {
   return (
     <div className="gm-display-container">
-      <div>{address}</div>
+      <div className="gm-display-p">{address}</div>
     </div>
   );
 };
@@ -22,16 +22,26 @@ const GoogleMapComponent = ({ stops }) => {
   const [selectedPin, setSelectedPin] = useState(null);
 
   const show = (stop, index) => {
-    if (stop && index) {
+    if (
+      stop !== undefined &&
+      stop !== null &&
+      typeof index === "number" &&
+      index >= 0
+    ) {
+      // If stop is not undefined, not null, and index is a number >= 0
       if (index === selectedPin) {
+        // If the index is equal to the currently selected pin
         setSelectedPin(null);
         setAddress("");
       } else {
+        // If the index is different from the currently selected pin
         setSelectedPin(index);
         setAddress(stop.address);
       }
     } else {
+      // If stop is undefined, null, or index is not a number greater than -1
       setSelectedPin(null);
+      setAddress("");
     }
   };
 

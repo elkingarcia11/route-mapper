@@ -3,7 +3,6 @@ import "./AddressDisplay.css";
 const AddressDisplay = ({ address, addStop }) => {
   const add = () => {
     if (address && address.formatted_address && address.geometry.location) {
-      console.log(address);
       const stop = {
         address: address.formatted_address,
         lat: address.geometry.location.lat(),
