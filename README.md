@@ -29,7 +29,7 @@ Web App that uses React, Google Maps API and LocalStorage to manage routes. Uses
 2. Artifact Registry for Docker image
 3. Cloud Run for deployment version control
 
-## CI/CD Pipeline:
+# CI/CD Pipeline:
 
 1. Changes are pushed to `main` branch of source code
 2. Cloud Build triggers new Docker image build and pushes it to Artifact Registry
