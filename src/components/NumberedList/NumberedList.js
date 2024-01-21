@@ -21,6 +21,7 @@ const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
         {stops.map((stop, index) => (
           <PopupMenu
             stop={stop}
+            key={index}
             index={index}
             shouldCloseOtherPopups={shouldCloseOtherPopups}
             setShouldCloseOtherPopups={setShouldCloseOtherPopups}
