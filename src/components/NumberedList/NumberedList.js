@@ -3,8 +3,8 @@ import { FaTrash } from "react-icons/fa";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import "./NumberedList.css";
 
-const NumberedList = ({ stops, eraseRoute }) => {
-  const [otherPopupOpen, setOtherPopupOpen] = useState(false);
+const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
+  const [shouldCloseOtherPopups, setShouldCloseOtherPopups] = useState(false);
   return (
     <div id="autoGrowContainer" className="numbered-list">
       <div className="nl-row">
@@ -22,9 +22,9 @@ const NumberedList = ({ stops, eraseRoute }) => {
           <PopupMenu
             stop={stop}
             index={index}
-            key={index}
-            otherPopupOpen={otherPopupOpen}
-            setOtherPopupOpen={setOtherPopupOpen}
+            shouldCloseOtherPopups={shouldCloseOtherPopups}
+            setShouldCloseOtherPopups={setShouldCloseOtherPopups}
+            eraseStop={eraseStop}
           />
         ))}
       </div>

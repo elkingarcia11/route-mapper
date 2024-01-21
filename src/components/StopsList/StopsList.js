@@ -25,12 +25,24 @@ const StopsList = ({ stops, setStops }, ref) => {
     setStops([]);
   };
 
+  const eraseStop = (stopIndex) => {
+    // Create a new array without the stop at the specified index
+    const updatedStops = stops.filter((_, index) => index !== stopIndex);
+
+    // Update the state with the new array
+    setStops(updatedStops);
+  };
+
   return (
     <div className="sl-container">
       <SearchBar ref={searchInputRef} setAddress={setAddress} />
 
       {stops.length > 0 && (
-        <NumberedList stops={stops} eraseRoute={eraseRoute} />
+        <NumberedList
+          stops={stops}
+          eraseRoute={eraseRoute}
+          eraseStop={eraseStop}
+        />
       )}
 
       {address && <AddressDisplay address={address} addStop={addStop} />}

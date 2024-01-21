@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import "./PopupMenu.css";
-const PopupMenu = ({ stop, index, otherPopupOpen, setOtherPopupOpen }) => {
+const PopupMenu = ({ stop, index, eraseStop }) => {
   const [isMenuVisible, setMenuVisible] = useState(false);
 
   const handleStopClick = () => {
-    setMenuVisible(!isMenuVisible);
+    if (isMenuVisible) {
+      setMenuVisible(false);
+    } else {
+      setMenuVisible(true);
+    }
   };
 
   const handleCancelClick = () => {
+    setMenuVisible(false);
+  };
+  const deleteStop = (index) => {
+    eraseStop(index);
     setMenuVisible(false);
   };
 
@@ -23,7 +31,7 @@ const PopupMenu = ({ stop, index, otherPopupOpen, setOtherPopupOpen }) => {
         {index + 1}. {stop.address}
       </button>
       <div style={separatorStyle}></div>
-      {isMenuVisible && !otherPopupOpen && (
+      {isMenuVisible && (
         <div className="popup-menu">
           <div className="popup-menu-row">
             <button
@@ -36,7 +44,7 @@ const PopupMenu = ({ stop, index, otherPopupOpen, setOtherPopupOpen }) => {
 
             <button
               className="pu-delete"
-              //onClick={eraseRoute}
+              onClick={() => deleteStop(index)}
               aria-label="Delete Stop"
             >
               <span>Delete Stop</span>
