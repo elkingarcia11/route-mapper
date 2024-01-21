@@ -36,6 +36,7 @@ Web App that uses React, Google Maps API and LocalStorage to manage routes. Uses
 3. Cloud Build triggers a new Cloud Run version deployment of web app using new Docker image in Artifact Registry
 
 ## Dependencies
+
 - `npm i @react-google-maps/api`
 - `npm i react-google-autocomplete`
 - `npm i react-tiny-popover`
@@ -59,7 +60,8 @@ You may also see any lint errors in the console.
 - View stops on Map
 - Select stops on Map to view stop information
   
-### Upcoming Features
+## Upcoming Features
+
 - LocalStorage implementation for temporary data storage during session
 - Cloud Firestore implementation for data storage for longer periods
 
@@ -69,4 +71,4 @@ For questions, feedback, or inquiries, feel free to contact me via email at elki
 
 ## Acknowledgments
 
-- Special thanks to GitHub for source code version control and Google for providing tools like Artifact Registry, Cloud Build and Cloud Run to improve CI/CD pipeline.
+Special thanks to GitHub for source code version control and Google for providing tools like Artifact Registry, Cloud Build and Cloud Run to improve CI/CD pipeline.
