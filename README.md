@@ -6,7 +6,7 @@ Web App that uses React, Google Maps API and LocalStorage to manage routes. Uses
 1. [Installation](#installation)
 2. [Configuration](#configuration)
 3. [Version Control](#version-control)
-4. [CI/CD Pipeline](#ci/cd-pipeline)
+4. [CI/CD Pipeline](#ci-cd-pipeline)
 5. [Dependencies](#dependencies)
 6. [Development](#development)
 7. [Features](#features)
