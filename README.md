@@ -1,14 +1,39 @@
 # Route Mapper Web App
-Web App that uses React, Google Maps API and LocalStorage to manage routes.
+Web App that uses React, Google Maps API and LocalStorage to manage routes. Uses GitHub, Cloud Build, Artifact Registry and Cloud Run for CI/CD.
 
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Configuration](#configuration)
+3. [Prerequisites](#version-control)
+4. [CI/CD Pipeline](#ci/cd-pipeline)
+5. [Dependencies](#dependencies)
+6. [Development](#development)
+7. [Features](#features)
+7. [Upcoming Features](#upcoming-features)
+8. [Contact](#contact)
+8. [Acknowledgments](#acknowledgements)
+
+## Installation
+
+1. Install Node Package Manager (npm)
+2. Install project dependencies: `npm install`
+   
+## Configuration
+
+1. Configure the environment variables for the project by creating a `.env` file and adding your Google Maps API credentials
+  
 ## Version Control:
-GitHub for source code
-Artifact Registry for Docker image
 
-## Continous Integration:
-1. Changes are push to `main` branch of source code
+1. GitHub for source code
+2. Artifact Registry for Docker image
+3. Cloud Run for deployment version control
+
+## CI/CD Pipeline:
+
+1. Changes are pushed to `main` branch of source code
 2. Cloud Build triggers new Docker image build and pushes it to Artifact Registry
-3. Cloud Run triggers a new deployment of web app using new Docker image in Artifact Registry
+3. Cloud Build triggers a new Cloud Run version deployment of web app using new Docker image in Artifact Registry
 
 ## Dependencies
 - `npm i @react-google-maps/api`
@@ -18,11 +43,9 @@ Artifact Registry for Docker image
 - `npm i google-map-react`
 - `npm i @vis.gl/react-google-maps`
 
-## Available Scripts
+## Development
 
-In the project directory, you can run:
-
-### `npm start`
+In the project directory, you can run `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -30,63 +53,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Adds and Deletes stops
+- View stops on Map
+- Select stops on Map to view stop information
+  
+### Upcoming Features
+- LocalStorage implementation for temporary data storage during session
+- Cloud Firestore implementation for data storage for longer periods
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contact
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For questions, feedback, or inquiries, feel free to contact me via email at elkingarcia.11@gmail.com or connect with me on [LinkedIn](https://www.linkedin.com/in/elkingarcia11/)
 
-## Deployment
+## Acknowledgments
 
-- `npm run build`
-- `serve -s build -l 80`
-
-### MARKED FOR DELETION
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Special thanks to GitHub for source code version control and Google for providing tools like Artifact Registry, Cloud Build and Cloud Run to improve CI/CD pipeline.
