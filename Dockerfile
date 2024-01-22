@@ -1,5 +1,12 @@
 # Use the official Node.js runtime as the base image
 FROM node:lts AS development
+
+ARG REACT_APP_GOOGLE_MAPS_API_KEY
+ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+
+ENV REACT_APP_GOOGLE_MAPS_API_KEY = $REACT_APP_GOOGLE_MAPS_API_KEY
+ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY = $REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+
 # Set working directory
 WORKDIR /app
 
@@ -14,13 +21,7 @@ COPY . .
 
 FROM development AS build
 
-# The .env file is now created during Cloud Build
-COPY .env .   
-
 RUN npm run build
-
-# Remove the .env file
-RUN rm .env
 
 # Use Nginx as the production server
 FROM nginx:alpine AS production

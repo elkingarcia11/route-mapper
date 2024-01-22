@@ -3,12 +3,8 @@ steps:
     entrypoint: 'bash'
     args:
       - '-c'
-      - |
-        echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$(gcloud secrets versions access latest --secret=REACT_APP_GOOGLE_MAPS_MAP_API_KEY)" > .env
-        echo "REACT_APP_GOOGLE_MAPS_API_KEY=$(gcloud secrets versions access latest --secret=REACT_APP_GOOGLE_MAPS_API_KEY)" >> .env
-        docker build -t us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper .
-        rm .env
-
+      - docker build --build-arg="REACT_APP_GOOGLE_MAPS_API_KEY=$$REACT_APP_GOOGLE_MAPS_API_KEY" --build-arg="REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$$REACT_APP_GOOGLE_MAPS_MAP_API_KEY" -t us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper .
+    secretEnv: ['REACT_APP_GOOGLE_MAPS_MAP_API_KEY', 'REACT_APP_GOOGLE_MAPS_API_KEY']
 availableSecrets:
   secretManager:      
     - versionName: projects/1083241152794/secrets/REACT_APP_GOOGLE_MAPS_API_KEY/versions/latest
