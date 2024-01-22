@@ -7,7 +7,7 @@ steps:
       docker build \
         --build-arg REACT_APP_GOOGLE_MAPS_API_KEY=$$REACT_APP_GOOGLE_MAPS_API_KEY \
         --build-arg REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$$REACT_APP_GOOGLE_MAPS_MAP_API_KEY \
-        -t gcr.io/$PROJECT_ID/your-image \
+        -t gcr.io/cloud-run-source-deploy/route-mapper/route-mapper \
         .
 
 availableSecrets:
