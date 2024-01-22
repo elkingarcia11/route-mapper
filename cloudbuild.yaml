@@ -1,17 +1,14 @@
 # cloudbuild.yaml
 steps:
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
-        echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$$REACT_APP_GOOGLE_MAPS_MAP_API_KEY" > .env
-      - |
-        echo "REACT_APP_GOOGLE_MAPS_API_KEY=$$REACT_APP_GOOGLE_MAPS_API_KEY" >> .env
+        echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" > .env
+        echo "REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}" >> .env
+      - 'docker build -t us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper .'
     secretEnv: ['REACT_APP_GOOGLE_MAPS_API_KEY', 'REACT_APP_GOOGLE_MAPS_MAP_API_KEY']
-  - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
-    args: ['-c', 'docker build -t . us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper']
 
 availableSecrets:
   secretManager:      
