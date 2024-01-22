@@ -14,10 +14,7 @@ COPY . .
 
 FROM development AS build
 
-# Build the React app with build arguments
-ARG REACT_APP_GOOGLE_MAPS_API_KEY
-ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
-RUN npm run build --build-arg REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY --build-arg REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+RUN npm run build 
 
 # Use Nginx as the production server
 FROM nginx:alpine AS production
