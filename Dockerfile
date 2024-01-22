@@ -1,13 +1,5 @@
 # Use the official Node.js runtime as the base image
 FROM node:lts AS development
-
-ARG REACT_APP_GOOGLE_MAPS_API_KEY
-ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
-
-# Set environment variabl
-ENV REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY
-ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY
-
 # Set working directory
 WORKDIR /app
 
@@ -22,8 +14,10 @@ COPY . .
 
 FROM development AS build
 
-# Build the React app for production
-RUN npm run build
+# Build the React app with build arguments
+ARG REACT_APP_GOOGLE_MAPS_API_KEY
+ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+RUN npm run build --build-arg REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY --build-arg REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY
 
 # Use Nginx as the production server
 FROM nginx:alpine AS production
