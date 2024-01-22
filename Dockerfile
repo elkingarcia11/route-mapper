@@ -14,7 +14,10 @@ COPY . .
 
 FROM development AS build
 
-RUN npm run build 
+# The .env file is now created during Cloud Build
+COPY .env .   
+
+RUN npm run build
 
 # Use Nginx as the production server
 FROM nginx:alpine AS production
