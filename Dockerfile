@@ -1,13 +1,12 @@
 # Use the official Node.js runtime as the base image
 FROM node:lts AS development
 
-# Use ARG to set build arguments (environment variables during build)
 ARG REACT_APP_GOOGLE_MAPS_API_KEY
 ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
 
-# Set environment variables during build
-ENV REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY
-ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+# Set environment variabl
+ARG REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY
+ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY
 
 # Set working directory
 WORKDIR /app
