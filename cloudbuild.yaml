@@ -1,0 +1,21 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      docker build \
+        --build-arg REACT_APP_GOOGLE_MAPS_API_KEY=$$REACT_APP_GOOGLE_MAPS_API_KEY \
+        --build-arg REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$$REACT_APP_GOOGLE_MAPS_MAP_API_KEY \
+        -t gcr.io/$PROJECT_ID/your-image \
+        .
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/extended-poetry-223323/secrets/REACT_APP_GOOGLE_MAPS_API_KEY/versions/latest
+      env: 'REACT_APP_GOOGLE_MAPS_API_KEY'
+    - versionName: projects/extended-poetry-223323/secrets/REACT_APP_GOOGLE_MAPS_MAP_API_KEY/versions/latest
+      env: 'REACT_APP_GOOGLE_MAPS_MAP_API_KEY'
+
+images:
+  - 'gcr.io/$PROJECT_ID/your-image'

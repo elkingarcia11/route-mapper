@@ -15,6 +15,14 @@ COPY . .
 
 FROM development AS build
 
+# Set build arguments during the build process
+ARG REACT_APP_GOOGLE_MAPS_API_KEY
+ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+
+# Set environment variables during the build process
+ENV REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY:-default_value}
+ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY:-default_value}
+
 # Build the React app for production
 RUN npm run build
 
