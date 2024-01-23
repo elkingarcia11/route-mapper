@@ -11,8 +11,8 @@ COPY package*.json ./
 RUN npm install
 
 # Create .env file
-RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY" > .env
-RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY" >> .env
+RUN echo REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY > .env
+RUN echo REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY >> .env
 
 # Copy the entire application code to the container
 COPY . .
