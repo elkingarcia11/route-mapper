@@ -1,12 +1,6 @@
 # Use the official Node.js runtime as the base image
 FROM node:lts AS development
 
-ARG REACT_APP_GOOGLE_MAPS_API_KEY
-ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
-
-ENV REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}
-ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}
-
 # Set working directory
 WORKDIR /app
 
@@ -16,18 +10,28 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+ARG REACT_APP_GOOGLE_MAPS_API_KEY
+ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+
+# Set environment variables
+ENV REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}
+ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}
+
+# Create .env file
+RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}" > .env
+RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" >> .env
+
 # Copy the entire application code to the container
 COPY . .
 
-FROM development AS build
-
+# Build the application
 RUN npm run build
 
 # Use Nginx as the production server
 FROM nginx:alpine AS production
 
-# Copy the built React app to Nginx's web server directory
-COPY --from=build /app/build /usr/share/nginx/html
+# Copy the built React app from the development stage to Nginx's web server directory
+COPY --from=development /app/build /usr/share/nginx/html
 
 # Expose port 80 for the Nginx server
 EXPOSE 80

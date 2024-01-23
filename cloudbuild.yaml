@@ -6,7 +6,7 @@ steps:
       - |
         docker build --build-arg="REACT_APP_GOOGLE_MAPS_API_KEY=${_REACT_APP_GOOGLE_MAPS_API_KEY}" \
                       --build-arg="REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${_REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" \
-                      -t us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest .
+                      -t us-east-4-docker.pkg.dev/extended-poetry-223323/route-mapper .
 
     secretEnv: ['REACT_APP_GOOGLE_MAPS_MAP_API_KEY', 'REACT_APP_GOOGLE_MAPS_API_KEY']
 
@@ -18,4 +18,4 @@ availableSecrets:
       env: 'REACT_APP_GOOGLE_MAPS_MAP_API_KEY'
 
 images:
-  - 'us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest'
+  - 'us-east-4-docker.pkg.dev/extended-poetry-223323/route-mapper'
