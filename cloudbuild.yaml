@@ -9,3 +9,5 @@ availableSecrets:
     env: 'REACT_APP_GOOGLE_MAPS_API_KEY'
   - versionName: projects/1083241152794/secrets/REACT_APP_GOOGLE_MAPS_MAP_API_KEY/versions/latest
     env: 'REACT_APP_GOOGLE_MAPS_MAP_API_KEY'
+options:
+  logging: CLOUD_LOGGING_ONLY
