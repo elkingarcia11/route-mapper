@@ -11,6 +11,7 @@ COPY package*.json ./
 RUN npm install
 
 # Create .env file
+RUN echo $REACT_APP_GOOGLE_MAPS_API_KEY
 RUN echo REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY > .env
 RUN echo REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY >> .env
 
@@ -19,6 +20,9 @@ COPY . .
 
 # Build the application
 RUN npm run build
+
+# Remove the .env file
+RUN rm .env
 
 # Use Nginx as the production server
 FROM nginx:alpine AS production
