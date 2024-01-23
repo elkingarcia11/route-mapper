@@ -1,16 +1,30 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  script: |
-    docker build  --build-arg="REACT_APP_GOOGLE_MAPS_API_KEY=$$REACT_APP_GOOGLE_MAPS_API_KEY" --build-arg=""REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$$REACT_APP_GOOGLE_MAPS_MAP_API_KEY"" -t us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest .
-  secretEnv: ['REACT_APP_GOOGLE_MAPS_MAP_API_KEY', 'REACT_APP_GOOGLE_MAPS_API_KEY']
-- name: 'gcr.io/cloud-builders/gcloud'
-  script: |
-    gcloud run deploy cloudrunservice --image us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest --region us-east4 --platform managed --allow-unauthenticated
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        docker build --build-arg="REACT_APP_GOOGLE_MAPS_API_KEY=${_REACT_APP_GOOGLE_MAPS_API_KEY}" \
+                      --build-arg="REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${_REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" \
+                      -t us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest .
+
+    secretEnv: ['REACT_APP_GOOGLE_MAPS_MAP_API_KEY', 'REACT_APP_GOOGLE_MAPS_API_KEY']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy cloudrunservice \
+          --image=us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest \
+          --region=us-east4 --platform=managed --allow-unauthenticated
+
 availableSecrets:
   secretManager:      
     - versionName: projects/1083241152794/secrets/REACT_APP_GOOGLE_MAPS_API_KEY/versions/latest
       env: 'REACT_APP_GOOGLE_MAPS_API_KEY'
     - versionName: projects/1083241152794/secrets/REACT_APP_GOOGLE_MAPS_MAP_API_KEY/versions/latest
       env: 'REACT_APP_GOOGLE_MAPS_MAP_API_KEY'
+
 images:
-- 'us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest'
+  - 'us-east-4-docker.pkg.dev/extended-poetry-223323/cloud-run-source-deploy/route-mapper/route-mapper:latest'
