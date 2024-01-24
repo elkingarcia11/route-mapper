@@ -5,9 +5,9 @@ FROM node:lts AS development
 ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
 ARG REACT_APP_GOOGLE_MAPS_API_KEY
 
-# Use the variables in your application setup
-ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY
-ENV REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY
+# Write environment variables to a .env file
+RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" >> .env
+RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}" >> .env
 
 # Set working directory
 WORKDIR /app
@@ -35,3 +35,6 @@ EXPOSE 80
 
 # Start Nginx when the container runs
 CMD ["nginx", "-g", "daemon off;"]
+
+# Cleanup: Remove the .env file
+RUN rm .env
