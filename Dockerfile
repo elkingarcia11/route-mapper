@@ -1,6 +1,10 @@
 # Use the official Node.js runtime as the base image
 FROM node:lts AS development
 
+# Create build arg variables
+ARG REACT_APP_GOOGLE_MAPS_API_KEY
+ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
+
 # Set working directory
 WORKDIR /app
 
@@ -9,10 +13,6 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
-
-# Create build arg variables
-ARG REACT_APP_GOOGLE_MAPS_API_KEY
-ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
 
 # Create .env file
 RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY" > .env
