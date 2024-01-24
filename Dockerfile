@@ -9,7 +9,7 @@ ARG REACT_APP_GOOGLE_MAPS_API_KEY
 WORKDIR /app
 
 # Write environment variables to a .env file
-RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" >> .env
+RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" > .env
 RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}" >> .env
 
 # Copy package.json and package-lock.json to the working directory
