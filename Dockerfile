@@ -24,9 +24,6 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Cleanup: Remove the .env file
-RUN rm .env
-
 # Use Nginx as the production server
 FROM nginx:alpine AS production
 
