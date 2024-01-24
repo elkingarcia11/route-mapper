@@ -5,12 +5,12 @@ FROM node:lts AS development
 ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
 ARG REACT_APP_GOOGLE_MAPS_API_KEY
 
+# Set working directory
+WORKDIR /app
+
 # Write environment variables to a .env file
 RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}" >> .env
 RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}" >> .env
-
-# Set working directory
-WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
@@ -24,6 +24,9 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# Cleanup: Remove the .env file
+RUN rm .env
+
 # Use Nginx as the production server
 FROM nginx:alpine AS production
 
@@ -35,6 +38,3 @@ EXPOSE 80
 
 # Start Nginx when the container runs
 CMD ["nginx", "-g", "daemon off;"]
-
-# Cleanup: Remove the .env file
-RUN rm .env
