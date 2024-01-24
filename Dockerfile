@@ -1,10 +1,6 @@
 # Use the official Node.js runtime as the base image
 FROM node:lts AS development
 
-# Create build arg variables
-ARG REACT_APP_GOOGLE_MAPS_API_KEY
-ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
-
 # Set working directory
 WORKDIR /app
 
@@ -14,18 +10,11 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Create .env file
-RUN echo " API KEY TEST: $REACT_APP_GOOGLE_MAPS_API_KEY"
-RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY" > .env
-RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY" >> .env
 # Copy the entire application code to the container
 COPY . .
 
 # Build the application
 RUN npm run build
-
-# Remove the .env file
-RUN rm .env
 
 # Use Nginx as the production server
 FROM nginx:alpine AS production
