@@ -1,6 +1,6 @@
 # Route Mapper Web App
 
-This README.md provides information about the Route Mapper Web App, a web application built with React, Google Maps API, and LocalStorage for efficient route management. The application utilizes GitHub, Cloud Build, Artifact Registry, and Cloud Run to establish a seamless CI/CD pipeline.
+This README.md provides information about the Route Mapper Web App, a web application built with React, Google Maps API, and LocalStorage for efficient route management. The application utilizes GitHub, Cloud Build, Build Triggers, Artifact Registry, and Cloud Run to establish a seamless CI/CD pipeline.
 
 ## Table of Contents
 
