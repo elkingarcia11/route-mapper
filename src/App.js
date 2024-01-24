@@ -8,7 +8,7 @@ import "./App.css";
 function App() {
   const [mapMode, setMapMode] = useState(false);
   const [stops, setStops] = useState([]);
-
+  console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
   return (
     <div className="App">
       {mapMode ? (
