@@ -5,7 +5,7 @@ FROM node:lts AS development
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json .
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
@@ -19,7 +19,7 @@ RUN echo "REACT_APP_GOOGLE_MAPS_API_KEY=$REACT_APP_GOOGLE_MAPS_API_KEY" > .env
 RUN echo "REACT_APP_GOOGLE_MAPS_MAP_API_KEY=$REACT_APP_GOOGLE_MAPS_MAP_API_KEY" >> .env
 
 # Copy the entire application code to the container
-COPY . .
+COPY . ./
 
 # Build the application
 RUN npm run build
