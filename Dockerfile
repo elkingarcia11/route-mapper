@@ -1,16 +1,8 @@
 # Use the official Node.js runtime as the base image
 FROM node:lts AS development
 
-# ARG instructions to declare variables
-ARG REACT_APP_GOOGLE_MAPS_MAP_API_KEY
-ARG REACT_APP_GOOGLE_MAPS_API_KEY
-
 # Set working directory
 WORKDIR /app
-
-# Use the variables in your application setup
-ENV REACT_APP_GOOGLE_MAPS_MAP_API_KEY=${REACT_APP_GOOGLE_MAPS_MAP_API_KEY}
-ENV REACT_APP_GOOGLE_MAPS_API_KEY=${REACT_APP_GOOGLE_MAPS_API_KEY}
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
