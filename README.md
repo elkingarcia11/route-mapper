@@ -22,9 +22,8 @@ This README.md provides information about the Route Mapper Web App, a web applic
 
 ## Configuration
 
-1. Add any necessary environment variables to Secrets using Secret Manager in Google Cloud Platform.
-2. Grant your Cloud Build Service Account access to the Secrets.
-3. Verify that `cloudbuild.yaml` references the correct Secrets from the Secret Manager.
+1. Add `REACT_APP_GOOGLE_MAPS_API_KEY` and `REACT_APP_GOOGLE_MAPS_MAP_API_KEY` environment variables either using a `.env` file or Secrets using Secret Manager in Google Cloud Platform.
+2. Set up a Cloud Armor Policy to deny all connections to your service at the network edge, except for specified allowed IP addresses.
 
 ## Version Control
 
