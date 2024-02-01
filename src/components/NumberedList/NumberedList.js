@@ -2,16 +2,18 @@ import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import "./NumberedList.css";
+import DeleteAllPopup from "../DeleteAllPopup/DeleteAllPopup";
 
 const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
   const [shouldCloseOtherPopups, setShouldCloseOtherPopups] = useState(false);
+  const [showDeleteAllPopup, setShowDeleteAllPopup] = useState(false);
   return (
     <div id="autoGrowContainer" className="numbered-list">
       <div className="nl-row">
         <h2>Stops</h2>
         <button
           className="nl-delete"
-          onClick={eraseRoute}
+          onClick={()=>{setShowDeleteAllPopup(true)}}
           aria-label="Delete Route"
         >
           <FaTrash /> <span>Delete Route</span>
@@ -27,9 +29,10 @@ const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
             setShouldCloseOtherPopups={setShouldCloseOtherPopups}
             eraseStop={eraseStop}
           />
-        ))}
+        ))}{showDeleteAllPopup && <DeleteAllPopup showDeleteAllPopup={showDeleteAllPopup} setShowDeleteAllPopup={setShowDeleteAllPopup} eraseRoute={eraseRoute} />}
+    
       </div>
-    </div>
+      </div>
   );
 };
 

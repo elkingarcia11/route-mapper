@@ -1,58 +1,52 @@
-import React, { useState } from "react";
+// GoogleMapComponent.js
+import React, { useState } from 'react';
 import {
   APIProvider,
   AdvancedMarker,
   Map,
   Pin,
-} from "@vis.gl/react-google-maps";
-
-import PropTypes from "prop-types";
-import "./GoogleMapComponent.css";
+} from '@vis.gl/react-google-maps';
+import PropTypes from 'prop-types';
+import './GoogleMapComponent.css';
 
 const Display = ({ address }) => {
   return (
-    <div className="gm-display-container">
-      <div className="gm-display-p">{address}</div>
+    <div className="display-container">
+      <div className="display-content">{address}</div>
     </div>
   );
 };
 
 const GoogleMapComponent = ({ stops }) => {
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState('');
   const [selectedPin, setSelectedPin] = useState(null);
+  const [showDisplay, setShowDisplay] = useState(false);
 
   const show = (stop, index) => {
-    if (
-      stop !== undefined &&
-      stop !== null &&
-      typeof index === "number" &&
-      index >= 0
-    ) {
-      // If stop is not undefined, not null, and index is a number >= 0
+    if (stop && typeof index === 'number' && index >= 0) {
       if (index === selectedPin) {
-        // If the index is equal to the currently selected pin
         setSelectedPin(null);
-        setAddress("");
+        setAddress('');
+        setShowDisplay(false);
       } else {
-        // If the index is different from the currently selected pin
         setSelectedPin(index);
         setAddress(stop.address);
+        setShowDisplay(true);
       }
     } else {
-      // If stop is undefined, null, or index is not a number greater than -1
       setSelectedPin(null);
-      setAddress("");
+      setAddress('');
+      setShowDisplay(false);
     }
   };
 
   if (!stops || !Array.isArray(stops)) {
-    // Handle the case where stops is not a valid array
     return <div>No stops data available.</div>;
   } else {
     return (
       <>
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_MAP_API_KEY}>
-          <div className="container-style">
+          <div className={`map-container ${showDisplay ? 'small' : 'large'}`}>
             <Map
               mapId={process.env.REACT_APP_GOOGLE_MAPS_MAP_API_KEY}
               center={{ lat: 40.854541, lng: -73.8939687 }}
@@ -67,9 +61,9 @@ const GoogleMapComponent = ({ stops }) => {
                     onClick={() => show(stop, index)}
                   >
                     <Pin
-                      background={isSelected ? "#e0e0e0" : "#22ccff"}
-                      borderColor={isSelected ? "#999999" : "#1e89a1"}
-                      glyphColor={isSelected ? "#666666" : "#0f677a"}
+                      background={isSelected ? '#e0e0e0' : '#22ccff'}
+                      borderColor={isSelected ? '#999999' : '#1e89a1'}
+                      glyphColor={isSelected ? '#666666' : '#0f677a'}
                     />
                   </AdvancedMarker>
                 );

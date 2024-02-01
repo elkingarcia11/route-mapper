@@ -5,8 +5,8 @@
   overflow: hidden;
   background-color: #f2f2f2;
   width: 100vw;
-  height: 100vh;
   max-height: 100vh;
+  background-color: red;
 }
 
 .address-display {
@@ -52,4 +52,8 @@ button {
   min-height: 8vh;
   max-height: 8vh;
   background-color: yellow;
+}
+
+input {
+  border-radius: 0;
 }
