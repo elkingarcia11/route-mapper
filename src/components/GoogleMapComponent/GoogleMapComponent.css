@@ -5,7 +5,6 @@
 
 .gm-display-content {
   height: 100%;
-  background-color: green;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
