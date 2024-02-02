@@ -1,9 +1,6 @@
 import React from "react";
 import "./PopupMenu.css";
 const PopupMenu = ({ stop, index, eraseStop, isOpen, onToggle }) => {
-  const handleCancelClick = () => {
-    onToggle();
-  };
   const deleteStop = (index) => {
     eraseStop(index);
     onToggle();
@@ -26,7 +23,7 @@ const PopupMenu = ({ stop, index, eraseStop, isOpen, onToggle }) => {
           <div className="popup-menu-row">
             <button
               className="pu-cancel"
-              onClick={() => handleCancelClick()}
+              onClick={() => onToggle()}
               aria-label="Cancel"
             >
               Cancel

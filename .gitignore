@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .env
+
+/src/route-mapper-service-account-credentials.json

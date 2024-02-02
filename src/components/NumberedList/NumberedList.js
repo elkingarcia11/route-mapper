@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaSignOutAlt } from "react-icons/fa";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import "./NumberedList.css";
 import DeleteAllPopup from "../DeleteAllPopup/DeleteAllPopup";
+import SignOutPopup from "../SignOutPopup/SignOutPopup";
 
-const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
+const NumberedList = ({ stops, eraseRoute, eraseStop, setUser }) => {
   const [showDeleteAllPopup, setShowDeleteAllPopup] = useState(false);
+  const [showSignOutPopup, setShowSignOutPopup] = useState(false);
   const [openPopups, setOpenPopups] = useState([]);
 
   const handlePopupToggle = (index) => {
+    console.log(index);
     // Check if the popup is already open
     const isOpen = openPopups.includes(index);
 
@@ -23,28 +26,41 @@ const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
   const closeAllPopups = () => {
     setOpenPopups([]);
     setShowDeleteAllPopup(false);
+    setShowSignOutPopup(false);
   };
 
   return (
     <div id="autoGrowContainer" className="numbered-list">
       <div className="nl-row">
-        <h2>Stops</h2>
+        <div className="nl-row-column">
+          <h2>Stops</h2>
+          <button
+            className="nl-delete"
+            onClick={() => {
+              closeAllPopups();
+              setShowDeleteAllPopup(true);
+            }}
+            aria-label="Delete Route"
+          >
+            <FaTrash />
+          </button>
+        </div>
         <button
-          className="nl-delete"
+          className="nl-signout"
           onClick={() => {
             closeAllPopups();
-            setShowDeleteAllPopup(true);
+            setShowSignOutPopup(true);
           }}
-          aria-label="Delete Route"
+          aria-label="Sign Out"
         >
-          <FaTrash /> <span>Delete Route</span>
+          <FaSignOutAlt />
         </button>
       </div>
       <div className="nl-list">
         {stops.map((stop, index) => (
           <PopupMenu
             stop={stop}
-            key={index}
+            key={stop.address} // or any other unique identifier
             index={index}
             isOpen={openPopups.includes(index)}
             onToggle={() => handlePopupToggle(index)}
@@ -56,6 +72,15 @@ const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
             showDeleteAllPopup={showDeleteAllPopup}
             setShowDeleteAllPopup={setShowDeleteAllPopup}
             eraseRoute={eraseRoute}
+          />
+        )}
+
+        {showSignOutPopup && (
+          <SignOutPopup
+            showSignOutPopup={showSignOutPopup}
+            setShowSignOutPopup={setShowSignOutPopup}
+            eraseRoute={eraseRoute}
+            setUser={setUser}
           />
         )}
       </div>

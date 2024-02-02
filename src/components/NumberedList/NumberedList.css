@@ -14,7 +14,16 @@
 
 .nl-row {
   display: flex;
+  flex: 1;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
+}
+.nl-row-column {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: baseline;
 }
 
@@ -23,19 +32,27 @@
 }
 
 .nl-delete {
-  background-color: lightcoral;
+  color: red;
+  border: none;
+  background-color: #f2f2f2;
+  margin-left: 0px;
+}
+.nl-signout {
   border-radius: 5px;
-  color: black;
-  border: 1px lightcoral solid;
+  background-color: #f2f2f2;
+  border: 1px gray solid;
+  color: gray;
+  border: none;
   margin-right: 8px;
 }
 
 .nl-delete:hover {
-  color: darkred;
+  background-color: #f2f2f2;
+  color: red;
 }
 
 .nl-delete:active {
-  background-color: lightcoral;
+  background-color: #f2f2f2;
   color: red;
 }
 
