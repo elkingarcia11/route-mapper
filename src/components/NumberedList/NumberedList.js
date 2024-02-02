@@ -5,15 +5,36 @@ import "./NumberedList.css";
 import DeleteAllPopup from "../DeleteAllPopup/DeleteAllPopup";
 
 const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
-  const [shouldCloseOtherPopups, setShouldCloseOtherPopups] = useState(false);
   const [showDeleteAllPopup, setShowDeleteAllPopup] = useState(false);
+  const [openPopups, setOpenPopups] = useState([]);
+
+  const handlePopupToggle = (index) => {
+    // Check if the popup is already open
+    const isOpen = openPopups.includes(index);
+
+    // Toggle the state for the clicked popup
+    if (isOpen) {
+      setOpenPopups(openPopups.filter((popupIndex) => popupIndex !== index));
+    } else {
+      setOpenPopups([...openPopups, index]);
+    }
+  };
+
+  const closeAllPopups = () => {
+    setOpenPopups([]);
+    setShowDeleteAllPopup(false);
+  };
+
   return (
     <div id="autoGrowContainer" className="numbered-list">
       <div className="nl-row">
         <h2>Stops</h2>
         <button
           className="nl-delete"
-          onClick={()=>{setShowDeleteAllPopup(true)}}
+          onClick={() => {
+            closeAllPopups();
+            setShowDeleteAllPopup(true);
+          }}
           aria-label="Delete Route"
         >
           <FaTrash /> <span>Delete Route</span>
@@ -25,14 +46,20 @@ const NumberedList = ({ stops, eraseRoute, eraseStop }) => {
             stop={stop}
             key={index}
             index={index}
-            shouldCloseOtherPopups={shouldCloseOtherPopups}
-            setShouldCloseOtherPopups={setShouldCloseOtherPopups}
+            isOpen={openPopups.includes(index)}
+            onToggle={() => handlePopupToggle(index)}
             eraseStop={eraseStop}
           />
-        ))}{showDeleteAllPopup && <DeleteAllPopup showDeleteAllPopup={showDeleteAllPopup} setShowDeleteAllPopup={setShowDeleteAllPopup} eraseRoute={eraseRoute} />}
-    
+        ))}
+        {showDeleteAllPopup && (
+          <DeleteAllPopup
+            showDeleteAllPopup={showDeleteAllPopup}
+            setShowDeleteAllPopup={setShowDeleteAllPopup}
+            eraseRoute={eraseRoute}
+          />
+        )}
       </div>
-      </div>
+    </div>
   );
 };
 

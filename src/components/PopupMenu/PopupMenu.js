@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import "./PopupMenu.css";
-const PopupMenu = ({ stop, index, eraseStop }) => {
-  const [isMenuVisible, setMenuVisible] = useState(false);
-
-  const handleStopClick = () => {
-    if (isMenuVisible) {
-      setMenuVisible(false);
-    } else {
-      setMenuVisible(true);
-    }
-  };
-
+const PopupMenu = ({ stop, index, eraseStop, isOpen, onToggle }) => {
   const handleCancelClick = () => {
-    setMenuVisible(false);
+    onToggle();
   };
   const deleteStop = (index) => {
     eraseStop(index);
-    setMenuVisible(false);
+    onToggle();
   };
 
   const separatorStyle = {
@@ -27,11 +17,11 @@ const PopupMenu = ({ stop, index, eraseStop }) => {
 
   return (
     <div className="stop-item" key={stop.id || index}>
-      <button className="st-button" onClick={() => handleStopClick()}>
+      <button className="st-button" onClick={() => onToggle()}>
         {index + 1}. {stop.address}
       </button>
       <div style={separatorStyle}></div>
-      {isMenuVisible && (
+      {isOpen && (
         <div className="popup-menu">
           <div className="popup-menu-row">
             <button

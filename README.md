@@ -8,12 +8,11 @@ This README.md provides information about the Route Mapper Web App, a web applic
 2. [Configuration](#configuration)
 3. [Version Control](#version-control)
 4. [CI/CD Pipeline](#ci-cd-pipeline)
-5. [Dependencies](#dependencies)
-6. [Development](#development)
-7. [Features](#features)
-8. [Upcoming Features](#upcoming-features)
-9. [Contact](#contact)
-10. [Acknowledgments](#acknowledgments)
+5. [Development](#development)
+6. [Features](#features)
+7. [Upcoming Features](#upcoming-features)
+8. [Contact](#contact)
+9. [Acknowledgments](#acknowledgments)
 
 ## Installation
 
@@ -23,7 +22,8 @@ This README.md provides information about the Route Mapper Web App, a web applic
 ## Configuration
 
 1. Add `REACT_APP_GOOGLE_MAPS_API_KEY` and `REACT_APP_GOOGLE_MAPS_MAP_API_KEY` environment variables either using a `.env` file or Secrets using Secret Manager in Google Cloud Platform.
-2. Set up a Cloud Armor Policy to deny all connections to your service at the network edge, except for specified allowed IP addresses.
+2. Set up a Cloud Armor Policy to deny all connections at the network edge, except for specified allowed IP addresses.
+3. Add policy to service
 
 ## Version Control
 
@@ -37,22 +37,13 @@ This README.md provides information about the Route Mapper Web App, a web applic
 2. Cloud Build Trigger initiates a new build using the `cloudbuild.yaml` configuration, pushing it to Artifact Registry.
 3. Cloud Build triggers a new Cloud Run version deployment of the web app using the updated Docker image from Artifact Registry.
 
-## Dependencies
-
-- `npm i @react-google-maps/api`
-- `npm i react-google-autocomplete`
-- `npm i react-tiny-popover`
-- `npm install react-icons`
-- `npm i google-map-react`
-- `npm i @vis.gl/react-google-maps`
-
 ## Development
 
 To run the app locally, execute `npm start` in the project directory. This command launches the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser. The page will automatically reload when you make changes, and lint errors will be displayed in the console.
 
 ## Features
 
-- Add and delete stops
+- Add and delete stop(s)
 - View stops on the map
 - Select stops on the map to view stop information
 

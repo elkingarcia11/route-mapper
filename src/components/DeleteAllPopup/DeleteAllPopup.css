@@ -1,39 +1,50 @@
 .da-popup-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s, visibility 0.3s;
-  }
-  
-  .da-popup-container.visible {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  .da-popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-  .da-row{
-    display: flex;
-    justify-content: space-evenly;
-  }
-  
-  .da-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.da-popup-container.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.da-popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.da-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.da-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.da-delete-button {
+  background-color: red;
+  color: white;
+  width: 45%;
+}
+
+.da-cancel-button {
+  background-color: gray;
+  color: white;
+  width: 45%;
+}

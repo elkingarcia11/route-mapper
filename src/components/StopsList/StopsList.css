@@ -1,6 +1,5 @@
 .sl-container {
   flex-grow: 1; /* Take remaining space */
   max-height: calc(100vh - 16vh);
-  background-color: green;
   overflow-y: hidden;
 }

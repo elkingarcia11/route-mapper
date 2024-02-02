@@ -1,12 +1,7 @@
 .App {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
   overflow: hidden;
-  background-color: #f2f2f2;
   width: 100vw;
   max-height: 100vh;
-  background-color: red;
 }
 
 .address-display {
@@ -30,7 +25,7 @@ button {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.app-button-button {
+.toggle-map-button {
   height: 8vh;
   border: 1.5px solid green;
   border-radius: 0px;
@@ -40,18 +35,17 @@ button {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.app-button-button:active {
+.toggle-map-button:active {
   background-color: lightgreen;
   color: darkgreen;
 }
 
-.app-button {
+.toggle-map-button-container {
   position: fixed;
   bottom: 0;
   width: 100vw;
   min-height: 8vh;
   max-height: 8vh;
-  background-color: yellow;
 }
 
 input {

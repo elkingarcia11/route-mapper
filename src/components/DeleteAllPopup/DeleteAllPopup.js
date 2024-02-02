@@ -1,20 +1,42 @@
-import "./DeleteAllPopup.css"
-const DeleteAllPopup = ({showDeleteAllPopup, setShowDeleteAllPopup, eraseRoute}) =>{
-    const closePopup = () => {
+import "./DeleteAllPopup.css";
+const DeleteAllPopup = ({
+  showDeleteAllPopup,
+  setShowDeleteAllPopup,
+  eraseRoute,
+}) => {
+  const closePopup = () => {
     setShowDeleteAllPopup(false);
-    };
-  
-return(
-    <div className={`da-popup-container ${showDeleteAllPopup ? 'visible' : 'hidden'}`}>
+  };
+
+  return (
+    <div
+      className={`da-popup-container ${
+        showDeleteAllPopup ? "visible" : "hidden"
+      }`}
+    >
       <div className="da-popup-content">
-        <h3>Are you sure you want to delete the entire route?</h3>
+        <h3>Do you want to delete the entire route?</h3>
         <div className="da-row">
-            <button onClick={()=>{closePopup()}}>Cancel</button>
-            <button onClick={()=>{eraseRoute()}}>Delete All</button>
+          <button
+            className="da-cancel-button"
+            onClick={() => {
+              closePopup();
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            className="da-delete-button"
+            onClick={() => {
+              eraseRoute();
+            }}
+          >
+            Delete All
+          </button>
         </div>
       </div>
     </div>
-)
-}
+  );
+};
 
-export default DeleteAllPopup
+export default DeleteAllPopup;

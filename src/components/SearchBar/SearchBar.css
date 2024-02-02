@@ -1,4 +1,7 @@
 .search-bar {
   width: 100vw;
-  height: 8vh;
+  border: gray solid 1px;
+}
+.search-bar input {
+  height: 4vh;
 }
