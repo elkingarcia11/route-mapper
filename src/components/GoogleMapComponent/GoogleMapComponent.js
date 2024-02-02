@@ -1,32 +1,24 @@
 // GoogleMapComponent.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   APIProvider,
   AdvancedMarker,
   Map,
   Pin,
-} from '@vis.gl/react-google-maps';
-import PropTypes from 'prop-types';
-import './GoogleMapComponent.css';
-
-const Display = ({ address }) => {
-  return (
-    <div className="display-container">
-      <div className="display-content">{address}</div>
-    </div>
-  );
-};
+} from "@vis.gl/react-google-maps";
+import PropTypes from "prop-types";
+import "./GoogleMapComponent.css";
 
 const GoogleMapComponent = ({ stops }) => {
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
   const [selectedPin, setSelectedPin] = useState(null);
   const [showDisplay, setShowDisplay] = useState(false);
 
   const show = (stop, index) => {
-    if (stop && typeof index === 'number' && index >= 0) {
+    if (stop && typeof index === "number" && index >= 0) {
       if (index === selectedPin) {
         setSelectedPin(null);
-        setAddress('');
+        setAddress("");
         setShowDisplay(false);
       } else {
         setSelectedPin(index);
@@ -35,7 +27,7 @@ const GoogleMapComponent = ({ stops }) => {
       }
     } else {
       setSelectedPin(null);
-      setAddress('');
+      setAddress("");
       setShowDisplay(false);
     }
   };
@@ -44,9 +36,9 @@ const GoogleMapComponent = ({ stops }) => {
     return <div>No stops data available.</div>;
   } else {
     return (
-      <>
+      <div className="map-display-container">
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_MAP_API_KEY}>
-          <div className={`map-container ${showDisplay ? 'small' : 'large'}`}>
+          <div className={`map-container ${showDisplay ? "small" : "large"}`}>
             <Map
               mapId={process.env.REACT_APP_GOOGLE_MAPS_MAP_API_KEY}
               center={{ lat: 40.854541, lng: -73.8939687 }}
@@ -61,18 +53,22 @@ const GoogleMapComponent = ({ stops }) => {
                     onClick={() => show(stop, index)}
                   >
                     <Pin
-                      background={isSelected ? '#e0e0e0' : '#22ccff'}
-                      borderColor={isSelected ? '#999999' : '#1e89a1'}
-                      glyphColor={isSelected ? '#666666' : '#0f677a'}
+                      background={isSelected ? "#e0e0e0" : "#22ccff"}
+                      borderColor={isSelected ? "#999999" : "#1e89a1"}
+                      glyphColor={isSelected ? "#666666" : "#0f677a"}
                     />
                   </AdvancedMarker>
                 );
               })}
             </Map>
-            {selectedPin !== null && <Display address={address} />}
+            {address !== "" && (
+              <div className="gm-display-container">
+                <div className="gm-display-content">{address}</div>
+              </div>
+            )}
           </div>
         </APIProvider>
-      </>
+      </div>
     );
   }
 };

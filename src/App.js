@@ -17,11 +17,13 @@ function App() {
   }, [stops]);
   return (
     <div className="App">
-      {mapMode ? (
-        <GoogleMapComponent stops={stops} />
-      ) : (
-        <StopsList stops={stops} setStops={setStops} />
-      )}
+      <div className="map-and-list">
+        {mapMode ? (
+          <GoogleMapComponent stops={stops} />
+        ) : (
+          <StopsList stops={stops} setStops={setStops} />
+        )}
+      </div>
       <div className="toggle-map-button-container">
         <button
           className="toggle-map-button"

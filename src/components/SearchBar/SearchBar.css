@@ -1,7 +1,5 @@
 .search-bar {
   width: 100vw;
   border: gray solid 1px;
-}
-.search-bar input {
-  height: 4vh;
+  position: fixed;
 }

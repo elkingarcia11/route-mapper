@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PopupMenu.css";
 const PopupMenu = ({ stop, index, eraseStop, isOpen, onToggle }) => {
   const handleCancelClick = () => {

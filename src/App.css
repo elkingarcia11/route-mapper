@@ -1,7 +1,6 @@
 .App {
   overflow: hidden;
   width: 100vw;
-  max-height: 100vh;
 }
 
 .address-display {
@@ -44,8 +43,7 @@ button {
   position: fixed;
   bottom: 0;
   width: 100vw;
-  min-height: 8vh;
-  max-height: 8vh;
+  height: 8vh; /* Adjust this value based on your layout */
 }
 
 input {
