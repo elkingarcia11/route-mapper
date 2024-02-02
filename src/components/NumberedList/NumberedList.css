@@ -2,10 +2,9 @@
   padding-top: 8svh;
   text-align: left;
   background-color: #f2f2f2;
-  overflow: hidden;
+  overflow: auto;
 }
 .nl-list {
-  overflow-y: auto;
   padding-bottom: 8svh;
 }
 .numbered-list h2 {

@@ -3,13 +3,6 @@ import React, { useEffect, useState } from "react";
 import GoogleMapComponent from "./components/GoogleMapComponent/GoogleMapComponent";
 import AuthComponent from "./components/AuthComponent/AuthComponent";
 import StopsList from "./components/StopsList/StopsList";
-import { onAuthStateChanged } from "firebase/auth";
-
-import {
-  auth,
-  storeUserInLocalStorage,
-  removeUserFromLocalStorage,
-} from "./firebase";
 
 import "./App.css";
 

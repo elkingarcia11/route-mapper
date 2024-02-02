@@ -30,7 +30,7 @@ const NumberedList = ({ stops, eraseRoute, eraseStop, setUser }) => {
   };
 
   return (
-    <div id="autoGrowContainer" className="numbered-list">
+    <div className="numbered-list">
       <div className="nl-row">
         <div className="nl-row-column">
           <h2>Stops</h2>
