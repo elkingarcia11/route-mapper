@@ -53,7 +53,7 @@ const NumberedList = ({ stops, eraseRoute, eraseStop, setUser }) => {
           }}
           aria-label="Sign Out"
         >
-          <FaSignOutAlt />
+          Sign Out <FaSignOutAlt />
         </button>
       </div>
       <div className="nl-list">
