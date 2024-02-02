@@ -41,6 +41,9 @@ const GoogleMapComponent = ({ stops }) => {
           <div className={`map-container ${showDisplay ? "small" : "large"}`}>
             <Map
               mapId={process.env.REACT_APP_GOOGLE_MAPS_MAP_API_KEY}
+              mapTypeControlOptions={{ mapTypeIds: ["ROADMAP"] }}
+              streetViewControl={false}
+              zoomControl={false}
               center={{ lat: 40.854541, lng: -73.8939687 }}
               zoom={12}
             >

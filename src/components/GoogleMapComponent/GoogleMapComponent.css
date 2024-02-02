@@ -1,16 +1,15 @@
 /* GoogleMapComponent.css */
 .gm-display-container {
-  height: 15vh;
-  max-height: 15vh;
+  height: 15svh;
 }
 
 .gm-display-content {
+  height: 100%;
+  background-color: green;
   display: flex;
   flex-wrap: wrap;
-  height: 15vh;
-  max-height: 15vh;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   color: black;
   font-weight: bold;
   font-size: 1rem;
@@ -21,19 +20,14 @@
 }
 
 .small {
-  height: 77vh;
+  height: 77svh;
 }
 .large {
-  height: 92vh;
+  height: 92svh;
 }
 
 .map-display-container {
-  height: 92vh;
-}
-
-/* Media query for screens smaller than 600px (adjust as needed) */
-@media only screen and (max-width: 600px) {
-  .small {
-    height: 69.5vh;
-  }
+  height: 92svh;
+  position: fixed;
+  top: 0;
 }
