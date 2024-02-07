@@ -5,13 +5,12 @@ import "./NumberedList.css";
 import DeleteAllPopup from "../DeleteAllPopup/DeleteAllPopup";
 import SignOutPopup from "../SignOutPopup/SignOutPopup";
 
-const NumberedList = ({ stops, eraseRoute, eraseStop, setUser }) => {
+const NumberedList = ({ stops, eraseRoute, eraseStop, signOff }) => {
   const [showDeleteAllPopup, setShowDeleteAllPopup] = useState(false);
   const [showSignOutPopup, setShowSignOutPopup] = useState(false);
   const [openPopups, setOpenPopups] = useState([]);
 
   const handlePopupToggle = (index) => {
-    console.log(index);
     // Check if the popup is already open
     const isOpen = openPopups.includes(index);
 
@@ -53,7 +52,7 @@ const NumberedList = ({ stops, eraseRoute, eraseStop, setUser }) => {
           }}
           aria-label="Sign Out"
         >
-          Sign Out <FaSignOutAlt />
+          <span>Sign Out</span> <FaSignOutAlt />
         </button>
       </div>
       <div className="nl-list">
@@ -79,8 +78,7 @@ const NumberedList = ({ stops, eraseRoute, eraseStop, setUser }) => {
           <SignOutPopup
             showSignOutPopup={showSignOutPopup}
             setShowSignOutPopup={setShowSignOutPopup}
-            eraseRoute={eraseRoute}
-            setUser={setUser}
+            signOff={signOff}
           />
         )}
       </div>

@@ -1,32 +1,5 @@
 import "../DeleteAllPopup/DeleteAllPopup.css";
-import { signOut } from "firebase/auth";
-import auth from "../../firebase";
-const SignOutPopup = ({
-  showSignOutPopup,
-  setShowSignOutPopup,
-  eraseRoute,
-  setUser,
-}) => {
-  const closePopup = () => {
-    setShowSignOutPopup(false);
-  };
-
-  const signOff = async () => {
-    try {
-      await signOut(auth)
-        .then(() => {
-          // Sign-out successful.
-          setUser(null);
-          eraseRoute();
-        })
-        .catch((error) => {
-          // An error happened.
-          console.log(error);
-        });
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+const SignOutPopup = ({ showSignOutPopup, setShowSignOutPopup, signOff }) => {
   return (
     <div
       className={`da-popup-container ${
@@ -39,7 +12,7 @@ const SignOutPopup = ({
           <button
             className="da-cancel-button"
             onClick={() => {
-              closePopup();
+              setShowSignOutPopup(false);
             }}
           >
             Cancel

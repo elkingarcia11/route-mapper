@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FB_API_KEY,
@@ -17,22 +18,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, (authUser) => {
-  if (authUser) {
-    // User signed in
-    storeUserInLocalStorage(authUser);
-  } else {
-    // User signed out
-    removeUserFromLocalStorage();
-  }
-});
-
-export const storeUserInLocalStorage = (user) => {
-  localStorage.setItem("user", JSON.stringify(user));
-};
-
-export const removeUserFromLocalStorage = () => {
-  localStorage.removeItem("user");
-};
+// Initialize Cloud Firestore and get a reference to the service
+export const db = getFirestore(app);
 
 export default auth;

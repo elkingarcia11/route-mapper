@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import AddressDisplay from "../AddressDisplay/AddressDisplay";
 import NumberedList from "../NumberedList/NumberedList";
 import SearchBar from "../SearchBar/SearchBar";
-const StopsList = ({ stops, setStops, setUser }, ref) => {
+const StopsList = ({ stops, setStops, signOff }, ref) => {
   const [address, setAddress] = useState(null);
   const searchInputRef = useRef();
 
@@ -42,7 +42,7 @@ const StopsList = ({ stops, setStops, setUser }, ref) => {
           stops={stops}
           eraseRoute={eraseRoute}
           eraseStop={eraseStop}
-          setUser={setUser}
+          signOff={signOff}
         />
       )}
 
