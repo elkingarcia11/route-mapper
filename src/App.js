@@ -4,12 +4,14 @@ import GoogleMapComponent from "./components/GoogleMapComponent/GoogleMapCompone
 import AuthComponent from "./components/AuthComponent/AuthComponent";
 import StopsList from "./components/StopsList/StopsList";
 
-import auth from "./firebase";
-import { signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
-
+import { FaSignOutAlt } from "react-icons/fa";
+import SignOutPopup from "./components/SignOutPopup/SignOutPopup";
+import auth, { getApiKey, signInWithGoogle } from "./firebase";
+import { signOut } from "firebase/auth";
 import "./App.css";
 
 function App() {
+  const [showSignOutPopup, setShowSignOutPopup] = useState(false);
   const [mapMode, setMapMode] = useState(false);
   // Retrieve stops from local session on initial load
   const initialStops = JSON.parse(localStorage.getItem("stops")) || [];
@@ -18,33 +20,43 @@ function App() {
 
   const [stops, setStops] = useState(initialStops);
   const [user, setUser] = useState(initialUser);
+  const [apiKeys, setApiKeys] = useState(null);
 
   useEffect(() => {
     localStorage.setItem("stops", JSON.stringify(stops));
   }, [stops]);
 
   useEffect(() => {
+    localStorage.setItem("apiKeys", JSON.stringify(apiKeys));
+  }, [apiKeys]);
+
+  useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
+
+    const fetchApiKey = async () => {
+      try {
+        if (user != null) {
+          const aK = await getApiKey(user);
+          setApiKeys(aK);
+        } else {
+          setApiKeys(null); // Handle the case where user is null
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    if (user != null) {
+      fetchApiKey(user);
+    }
   }, [user]);
 
   const signIn = async () => {
-    const provider = new GoogleAuthProvider();
-
     try {
-      await signInWithPopup(auth, provider)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          //  const credential = GoogleAuthProvider.credentialFromResult(result);
-          // const token = credential.accessToken;
-          // The signed-in user info.
-          const user = result.user;
-          setUser(user.uid);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const result = await signInWithGoogle();
+      setUser(result);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
     }
   };
 
@@ -55,34 +67,54 @@ function App() {
           // Sign-out successful.
           setUser(null);
           setStops([]);
+          setApiKeys(null);
         })
         .catch((error) => {
           // An error happened.
-          console.log(error);
+          console.log(error.message);
         });
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
     }
   };
 
   return (
     <div className="App">
-      {user == null ? (
+      {!user ? (
         <AuthComponent signIn={signIn} />
       ) : (
         <div>
-          <div className="map-and-list">
-            {mapMode ? (
-              <GoogleMapComponent stops={stops} />
-            ) : (
-              <StopsList
-                stops={stops}
-                setStops={setStops}
-                setUser={setUser}
-                signOff={signOff}
-              />
-            )}
-          </div>
+          {mapMode ? (
+            <GoogleMapComponent stops={stops} apiKeys={apiKeys} />
+          ) : apiKeys ? (
+            <StopsList
+              stops={stops}
+              setStops={setStops}
+              setUser={setUser}
+              signOff={signOff}
+              apiKeys={apiKeys}
+            />
+          ) : (
+            <div style={{ padding: "12px" }}>
+              Search unavailable at this moment...
+              <div className="app-signout-btn">
+                <button
+                  className="nl-signout"
+                  onClick={() => setShowSignOutPopup(true)}
+                  aria-label="Sign Out"
+                >
+                  <span>Sign Out</span> <FaSignOutAlt />
+                </button>
+              </div>
+              {showSignOutPopup && (
+                <SignOutPopup
+                  showSignOutPopup={showSignOutPopup}
+                  setShowSignOutPopup={setShowSignOutPopup}
+                  signOff={signOff}
+                />
+              )}
+            </div>
+          )}
           <div className="toggle-map-button-container">
             <button
               className="toggle-map-button"

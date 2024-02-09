@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100svh;
   background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
   visibility: hidden;
@@ -47,4 +47,11 @@
   background-color: gray;
   color: white;
   width: 45%;
+}
+
+@media only screen and (max-width: 767px) {
+  .da-popup-container {
+    width: 90vw;
+    padding: 0 5vw;
+  }
 }

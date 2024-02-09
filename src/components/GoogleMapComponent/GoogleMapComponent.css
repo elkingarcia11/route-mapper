@@ -1,6 +1,7 @@
 /* GoogleMapComponent.css */
 .gm-display-container {
   height: 15svh;
+  padding: 0 16px;
 }
 
 .gm-display-content {

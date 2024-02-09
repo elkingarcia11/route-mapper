@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import AddressDisplay from "../AddressDisplay/AddressDisplay";
 import NumberedList from "../NumberedList/NumberedList";
 import SearchBar from "../SearchBar/SearchBar";
-const StopsList = ({ stops, setStops, signOff }, ref) => {
+
+import { FaSignOutAlt } from "react-icons/fa";
+import SignOutPopup from "../SignOutPopup/SignOutPopup";
+
+import "./StopsList.css";
+const StopsList = ({ stops, setStops, signOff, apiKeys }) => {
+  const [showSignOutPopup, setShowSignOutPopup] = useState(false);
   const [address, setAddress] = useState(null);
   const searchInputRef = useRef();
 
@@ -35,16 +41,17 @@ const StopsList = ({ stops, setStops, signOff }, ref) => {
 
   return (
     <div className="sl-container">
-      <SearchBar ref={searchInputRef} setAddress={setAddress} />
-
-      {stops.length > 0 && (
-        <NumberedList
-          stops={stops}
-          eraseRoute={eraseRoute}
-          eraseStop={eraseStop}
-          signOff={signOff}
-        />
-      )}
+      <SearchBar
+        ref={searchInputRef}
+        setAddress={setAddress}
+        apiKeys={apiKeys}
+      />
+      <NumberedList
+        stops={stops}
+        eraseRoute={eraseRoute}
+        eraseStop={eraseStop}
+        signOff={signOff}
+      />
 
       {address && <AddressDisplay address={address} addStop={addStop} />}
     </div>

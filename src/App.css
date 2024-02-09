@@ -49,3 +49,9 @@ button {
 input {
   border-radius: 0;
 }
+
+.app-signout-btn {
+  display: flex;
+  padding-top: 16px;
+  justify-content: center;
+}
